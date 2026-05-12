@@ -131,7 +131,8 @@
     .about-text {
       background: #000;
       color: var(--accent);
-      padding: 56px 56px 48px;
+      padding: 40px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -143,30 +144,42 @@
       flex-direction: column;
     }
     .about-tagline {
-      font-style: italic;
-      font-size: 18px;
       color: var(--accent);
     }
-    /* Верхняя строка: [——линия——] [←] [это не ии, а я] */
+    /* Верхняя строка: [——линия——←] [это не ии, а я] */
     .tagline-top {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 12px;
-      margin-bottom: 24px;
+      width: 100%;
+      gap: 8px;
+      margin-bottom: 16px;
     }
-    .tagline-line {
+    .tagline-top .line-arrow {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      gap: 4px;
+    }
+    .tagline-top .line-arrow::before {
+      content: '';
       flex: 1;
       height: 1px;
       background: #F17039;
     }
-    .tagline-arrow {
-      font-style: normal;
+    .tagline-top .line-arrow::after {
+      content: '←';
       flex-shrink: 0;
+      color: #F17039;
+      font-size: 18px;
+      line-height: 0.9;
     }
     .tagline-text {
-      white-space: nowrap;
       flex-shrink: 0;
+      white-space: nowrap;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
     }
     /* Нижний блок — две строки */
     .about-bottom-wrap {
@@ -175,45 +188,53 @@
     .bottom-line1 {
       font-family: 'Anonymous Pro', monospace;
       font-style: italic;
-      font-size: 28px;
+      font-size: 18px;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
       color: var(--accent);
       text-align: right;
       margin: 0 0 12px;
-      line-height: 1;
+      display: block;
     }
     .bottom-line2 {
       display: flex;
       align-items: center;
-      gap: 12px;
+      width: 100%;
+      gap: 8px;
       font-family: 'Anonymous Pro', monospace !important;
-      font-weight: 700;
       font-style: normal;
-      font-size: clamp(36px, 5vw, 56px);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
       color: #F17039;
-      line-height: 1;
     }
     .bottom-line2 > span:first-child {
-      white-space: nowrap;
       flex-shrink: 0;
+      white-space: nowrap;
+      font-size: 32px;
+      font-weight: 700;
     }
-    .bottom-line2 .bottom-trail {
+    .bottom-line2 .line {
       flex: 1;
       height: 1px;
-      background: var(--accent);
+      background: #F17039;
     }
     .bottom-line2 .bottom-arrow {
-      font-weight: 400;
       flex-shrink: 0;
+      font-size: 32px;
+      font-weight: 400;
     }
     .about-name {
       font-family: 'Anonymous Pro', monospace;
       font-weight: 700;
-      font-size: clamp(36px, 4.2vw, 64px);
-      line-height: 1;
+      font-size: 32px;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
       text-align: right;
+      display: block;
+      white-space: nowrap;
       text-decoration: underline;
-      text-underline-offset: 6px;
-      margin-bottom: 40px;
+      text-underline-offset: 4px;
+      margin-bottom: 24px;
     }
     .about-body p {
       font-family: 'Anonymous Pro', monospace;
@@ -222,7 +243,7 @@
       line-height: 0.9;
       letter-spacing: -0.03em;
       text-align: justify;
-      margin: 0 0 22px;
+      margin: 0 0 18px;
       color: var(--accent);
     }
 
@@ -734,7 +755,8 @@
       <div class="about-text">
         <div class="about-top">
           <div class="about-tagline tagline-top">
-            <span class="tagline-line"></span><span class="tagline-arrow">←</span> <span class="tagline-text">это не ии, а я</span>
+            <div class="line-arrow"></div>
+            <span class="tagline-text">это не ии, а я</span>
           </div>
           <h1 class="about-name">Илья Терентьев</h1>
 
@@ -753,7 +775,7 @@
           <div class="bottom-line1">а вот дальше будет ии,</div>
           <div class="bottom-line2">
             <span>поехали!</span>
-            <span class="bottom-trail"></span>
+            <div class="line"></div>
             <span class="bottom-arrow">→</span>
           </div>
         </div>
