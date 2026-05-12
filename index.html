@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Илья Терентьев — Видеограф · AI-креатор</title>
+  <meta name="description" content="Портфолио видеографа и AI-креатора. Казань, 2026." />
+
+  <!-- Google Fonts: Anonymous Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============ ПАЛИТРА ============ */
+    :root {
+      --bg:     #0D0D0D;
+      --accent: #F17039;
+      --text:   #FFFFFF;
+      --muted:  #444444;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Anonymous Pro', ui-monospace, monospace;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: left;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color .2s ease; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    img { max-width: 100%; display: block; }
+
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    /* ============ HEADER (sticky) ============ */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--accent);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+    }
+    .header-name {
+      font-family: 'Anonymous Pro', monospace;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .nav {
+      display: flex;
+      gap: 28px;
+    }
+    .nav a {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+    .nav a:hover { color: var(--accent); }
+
+    /* Бургер */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      width: 24px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .burger span {
+      display: block;
+      height: 2px;
+      background: var(--accent);
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ============ СЕКЦИИ ============ */
+    section {
+      padding: 96px 32px;
+    }
+
+    .label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    /* ============ ABOUT — пиксель в пиксель макет ============ */
+    #about {
+      padding: 0;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+    .about-photo-wrap {
+      background: #1a1a1a;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(100%);
+    }
+    .about-text {
+      background: #000;
+      color: var(--accent);
+      padding: 56px 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Anonymous Pro', monospace;
+      position: relative;
+    }
+    .about-top {
+      display: flex;
+      flex-direction: column;
+    }
+    .about-tagline {
+      font-style: italic;
+      font-size: 18px;
+      color: var(--accent);
+    }
+    /* Верхняя строка: [——линия——] [←] [это не ии, а я] */
+    .tagline-top {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .tagline-line {
+      flex: 1;
+      height: 1px;
+      background: #F17039;
+    }
+    .tagline-arrow {
+      font-style: normal;
+      flex-shrink: 0;
+    }
+    .tagline-text {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    /* Нижний блок — две строки */
+    .about-bottom-wrap {
+      margin-top: 24px;
+    }
+    .bottom-line1 {
+      font-family: 'Anonymous Pro', monospace;
+      font-style: italic;
+      font-size: 28px;
+      color: var(--accent);
+      text-align: right;
+      margin: 0 0 12px;
+      line-height: 1;
+    }
+    .bottom-line2 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Anonymous Pro', monospace !important;
+      font-weight: 700;
+      font-style: normal;
+      font-size: clamp(36px, 5vw, 56px);
+      color: #F17039;
+      line-height: 1;
+    }
+    .bottom-line2 > span:first-child {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .bottom-line2 .bottom-trail {
+      flex: 1;
+      height: 1px;
+      background: var(--accent);
+    }
+    .bottom-line2 .bottom-arrow {
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+    .about-name {
+      font-family: 'Anonymous Pro', monospace;
+      font-weight: 700;
+      font-size: clamp(36px, 4.2vw, 64px);
+      line-height: 1;
+      text-align: right;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      margin-bottom: 40px;
+    }
+    .about-body p {
+      font-family: 'Anonymous Pro', monospace;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      text-align: justify;
+      margin: 0 0 22px;
+      color: var(--accent);
+    }
+
+    /* ============ GRID секции (AI-фото / AI-видео / Видео) ============ */
+    .grid-section { max-width: 1400px; margin: 0 auto; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    .card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #1a1a1a;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card-photo { aspect-ratio: 1 / 1; }
+    .card-video { aspect-ratio: 16 / 9; }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .card img.broken { display: none; }
+    .card:hover img { transform: scale(1.03); }
+    .card .overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity .25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* широкий .card:hover .overlay убран — заменён на .video-thumb:hover ниже */
+    .card .play-icon {
+      width: 56px;
+      height: 56px;
+      opacity: 0;
+      transition: opacity .25s ease;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,.6));
+    }
+    .video-thumb:hover .play-icon { opacity: 1; }
+
+    /* ============ ВИДЕО-КАРТОЧКА (AI-видео и ВИДЕО) ============ */
+    .card-video {
+      aspect-ratio: auto;
+      background: transparent;
+      overflow: visible;
+      cursor: default;
+    }
+    .card-video:hover img { transform: none; }
+    .video-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      cursor: pointer;
+      background: #1a1a1a;
+    }
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .video-thumb:hover img { transform: scale(1.03); }
+    .video-thumb:hover .overlay { opacity: 0.4; }
+    .video-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin: 12px 0 0;
+    }
+    .video-toggle {
+      margin-top: 4px;
+    }
+    .toggle-btn {
+      font-family: 'Anonymous Pro', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #666;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px 0;
+      display: block;
+      transition: color 0.2s ease;
+    }
+    .toggle-btn:hover { color: var(--accent); }
+    .toggle-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      font-family: 'Anonymous Pro', monospace;
+      font-size: 13px;
+      color: #999;
+      line-height: 1.6;
+    }
+    .toggle-body.open {
+      max-height: 300px;
+    }
+
+    /* ============ AI-ФОТО: СЛАЙДЕР ============ */
+    .card-photo {
+      aspect-ratio: auto;
+      background: #0D0D0D;
+      cursor: default;
+      overflow: visible;
+    }
+    .card-photo:hover img { transform: none; }
+    .slider-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: transparent;
+    }
+    .slider-frame .slider-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.4s ease;
+    }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #FFFFFF;
+      font-size: 24px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 8px 12px;
+      cursor: pointer;
+      border: 0;
+      line-height: 1;
+      opacity: 0;
+      transition: opacity .2s ease, background .2s ease;
+      z-index: 2;
+      font-family: 'Anonymous Pro', monospace;
+    }
+    .slider-arrow:hover { background: rgba(0, 0, 0, 0.7); }
+    .slider-arrow.prev { left: 0; }
+    .slider-arrow.next { right: 0; }
+    .slider-frame:hover .slider-arrow { opacity: 1; }
+    .slider-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-top: 12px;
+    }
+
+    /* ============ ABOUT-TECH (фото + список) ============ */
+    #about-tech { padding: 0; }
+    .about-tech-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+    .about-tech-photo-wrap {
+      background: #1a1a1a;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-tech-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(100%);
+    }
+    .about-tech-content {
+      background: #0D0D0D;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      justify-content: space-between;
+    }
+    .tech-divider {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .tech-divider::before,
+    .tech-divider::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .tech-divider .line {
+      flex: 1;
+      height: 1px;
+      background: var(--accent);
+    }
+    .tech-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      flex: 1;
+      justify-content: center;
+    }
+    .tech-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: start;
+      gap: 16px;
+    }
+    /* «год рождения» — метка разбита на 2 строки через spans,
+       метка и значение «1991» выровнены по нижней строке («рождения:») */
+    .tech-row:last-of-type .tech-label {
+      display: flex;
+      flex-direction: column;
+    }
+    .tech-row:last-of-type .tech-label,
+    .tech-row:last-of-type .tech-values {
+      align-self: end;
+    }
+    .tech-label,
+    .tech-values {
+      font-family: 'Anonymous Pro', monospace;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+    .tech-label {
+      font-size: 28px;
+      white-space: pre-line;
+    }
+    .tech-values {
+      font-size: 24px;
+      white-space: nowrap;
+    }
+    /* Многозначные строки: каждый span на новой строке, перенос разрешён */
+    .tech-values.multi {
+      white-space: normal;
+    }
+    .tech-values.multi span {
+      display: block;
+    }
+    .tech-values.multi span + span {
+      margin-top: 6px;
+    }
+
+    /* ============ MODAL ============ */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 32px;
+    }
+    .modal.open { display: flex; }
+    .modal-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+    .modal-inner img,
+    .modal-inner iframe {
+      display: block;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+    .modal-inner iframe {
+      width: 80vw;
+      height: 45vw;
+      max-width: 1280px;
+      max-height: 720px;
+      border: 0;
+    }
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: var(--accent);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    /* ============ CONTACT ============ */
+    #contact { max-width: 800px; margin: 0 auto; }
+    .contact-headline {
+      font-family: 'Anonymous Pro', monospace;
+      font-style: italic;
+      color: var(--accent);
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 1;
+      margin: 0 0 56px;
+    }
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+    .form input,
+    .form textarea {
+      font-family: 'Anonymous Pro', monospace;
+      font-size: 16px;
+      color: var(--text);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--accent);
+      padding: 12px 0;
+      outline: none;
+      width: 100%;
+      resize: vertical;
+    }
+    .form input::placeholder,
+    .form textarea::placeholder { color: var(--muted); }
+    .form textarea { min-height: 120px; font-family: 'Anonymous Pro', monospace; }
+    .submit-btn {
+      align-self: flex-start;
+      font-family: 'Anonymous Pro', monospace;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+    .submit-btn:hover {
+      background: var(--accent);
+      color: #000;
+    }
+    .contacts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .contacts-list .row {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .contacts-list .key {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      min-width: 90px;
+    }
+    .contacts-list .val {
+      color: var(--text);
+    }
+    .contacts-list .val:hover { color: var(--accent); }
+
+    .socials {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .socials a {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .socials a:hover { color: var(--accent); }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      border-top: 1px solid var(--accent);
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .footer .left { color: var(--accent); }
+    .footer .right { color: var(--muted); }
+
+    /* ============ АДАПТИВ ============ */
+    @media (max-width: 1024px) {
+      .about-text { padding: 40px; }
+      .about-body p { font-size: 16px; }
+      .about-tech-content { padding: 40px; }
+      .tech-row { grid-template-columns: 160px 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav { display: none; }
+      .nav.open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 1px solid var(--accent);
+      }
+      .nav.open a {
+        padding: 18px 32px;
+        border-top: 1px solid #222;
+      }
+      .burger { display: flex; }
+      .header-inner { position: relative; }
+
+      section { padding: 64px 24px; }
+
+      .grid { grid-template-columns: repeat(2, 1fr); }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .about-photo {
+        aspect-ratio: 4 / 5;
+        max-height: 80vh;
+      }
+      .about-text {
+        padding: 40px 24px;
+      }
+      .about-name { text-align: left; }
+      .about-tagline { align-self: flex-start; }
+      .bottom-line1 { text-align: left; }
+
+      .about-tech-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .about-tech-photo {
+        aspect-ratio: 4 / 5;
+        max-height: 80vh;
+      }
+      .about-tech-content { padding: 40px 24px; }
+      .tech-row {
+        grid-template-columns: 140px 1fr;
+        gap: 12px;
+      }
+      .tech-label { font-size: 22px; }
+      .tech-values { font-size: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .grid { grid-template-columns: 1fr; }
+      .header-inner { padding: 14px 20px; }
+      .header-name { font-size: 13px; }
+      .about-body p { font-size: 15px; }
+      .contact-headline { font-size: 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#about" class="header-name">Илья Терентьев</a>
+      <div class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#about">Обо мне</a>
+        <a href="#ai-photo">AI-фото</a>
+        <a href="#ai-video">AI-видео</a>
+        <a href="#video">Видео</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ СЕКЦИЯ 1 — ОБО МНЕ ============ -->
+  <section id="about">
+    <div class="about-grid">
+      <!-- Фото слева -->
+      <div class="about-photo-wrap">
+        <img src="photo.jpg" alt="Илья Терентьев"
+             style="width:100%; height:100%; object-fit:cover; filter:grayscale(100%);"
+             onerror="this.style.display='none'" />
+      </div>
+
+      <!-- Текст справа -->
+      <div class="about-text">
+        <div class="about-top">
+          <div class="about-tagline tagline-top">
+            <span class="tagline-line"></span><span class="tagline-arrow">←</span> <span class="tagline-text">это не ии, а я</span>
+          </div>
+          <h1 class="about-name">Илья Терентьев</h1>
+
+          <div class="about-body">
+            <p>Родился и вырос в Саратове, живу и работаю в Казани. До видео я полжизни строил барный бизнес. Открывал и управлял своими собственными барами, которые работают по сей день. Один из них является лучшим в стране по версии нескольких премий.</p>
+
+            <p>Занимаюсь видео уже 7 лет, профессионально — последние 2. Снимаю. Монтирую. Крашу. Делаю саунд-дизайн. Генерирую идеи и нейро-контент. Базово владею моушн-дизайном. Обучался цветокоррекции у Евгения Ивакина, а вот всему остальному учился сам.</p>
+
+            <p>Создавал рекламу и продуктовые промо алкогольных брендов. Снимал и генерировал ролики для баров и ресторанов.</p>
+
+            <p>Езжу на мотоцикле, хожу по горам — даже поднимался на Эльбрус (все проклял) — и воспитываю пуделя. Спасибо за внимание.</p>
+          </div>
+        </div>
+
+        <div class="about-bottom-wrap">
+          <div class="bottom-line1">а вот дальше будет ии,</div>
+          <div class="bottom-line2">
+            <span>поехали!</span>
+            <span class="bottom-trail"></span>
+            <span class="bottom-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ СЕКЦИЯ 2 — AI-ФОТО ============ -->
+  <section id="ai-photo" class="grid-section">
+    <span class="label">AI-фото</span>
+    <div class="grid" id="grid-ai-photo"></div>
+  </section>
+
+  <!-- ============ СЕКЦИЯ 3 — AI-ВИДЕО ============ -->
+  <section id="ai-video" class="grid-section">
+    <span class="label">AI-видео</span>
+    <div class="grid" id="grid-ai-video"></div>
+  </section>
+
+  <!-- ============ СЕКЦИЯ 4 — ВИДЕО ============ -->
+  <section id="video" class="grid-section">
+    <span class="label">Видео</span>
+    <div class="grid" id="grid-video"></div>
+  </section>
+
+  <!-- ============ ABOUT-TECH (фото + список инструментов) ============ -->
+  <section id="about-tech">
+    <div class="about-tech-grid">
+      <!-- Фото слева -->
+      <div class="about-tech-photo-wrap">
+        <img class="about-tech-photo" src="photo2.jpg" alt="Илья Терентьев"
+             onerror="this.style.display='none'" />
+      </div>
+
+      <!-- Контент справа -->
+      <div class="about-tech-content">
+        <!-- Верхний разделитель ●——————● -->
+        <div class="tech-divider"><div class="line"></div></div>
+
+        <div class="tech-list">
+          <div class="tech-row">
+            <div class="tech-label">монтирую:</div>
+            <div class="tech-values multi">
+              <span>DaVinci Resolve</span>
+              <span>Final Cut Pro</span>
+            </div>
+          </div>
+
+          <div class="tech-row">
+            <div class="tech-label">крашу:</div>
+            <div class="tech-values">DaVinci Resolve</div>
+          </div>
+
+          <div class="tech-row">
+            <div class="tech-label">эффекты:</div>
+            <div class="tech-values multi">
+              <span>Fusion</span>
+              <span>After Effects</span>
+            </div>
+          </div>
+
+          <div class="tech-row">
+            <div class="tech-label">ai:</div>
+            <div class="tech-values multi">
+              <span>Nano Banana Pro</span>
+              <span>Midjourney</span>
+              <span>Kling</span>
+              <span>Seedance</span>
+              <span>Veo</span>
+              <span>Suno</span>
+              <span>ElevenLabs</span>
+            </div>
+          </div>
+
+          <div class="tech-row">
+            <div class="tech-label">рост:</div>
+            <div class="tech-values">184 см</div>
+          </div>
+
+          <div class="tech-row">
+            <div class="tech-label">вес:</div>
+            <div class="tech-values">80 кг</div>
+          </div>
+
+          <div class="tech-row">
+            <div class="tech-label">
+              <span class="label-top">год</span>
+              <span class="label-bottom">рождения:</span>
+            </div>
+            <div class="tech-values">1991</div>
+          </div>
+        </div>
+
+        <!-- Нижний разделитель ●——————● -->
+        <div class="tech-divider"><div class="line"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ СЕКЦИЯ 5 — КОНТАКТЫ ============ -->
+  <section id="contact">
+    <span class="label">Контакты</span>
+
+    <div class="contacts-list">
+      <div class="row">
+        <span class="key">ТГ</span>
+        <a class="val" href="https://t.me/YNWA64" target="_blank" rel="noopener">@YNWA64</a>
+      </div>
+      <div class="row">
+        <span class="key">Почта</span>
+        <a class="val" href="mailto:ilyamorekzn@gmail.com">ilyamorekzn@gmail.com</a>
+      </div>
+      <div class="row">
+        <span class="key">Телефон</span>
+        <a class="val" href="tel:+79600433254">+7 960 043 32 54</a>
+      </div>
+    </div>
+
+    <div class="socials">
+      <a href="https://t.me/YNWA64" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.instagram.com/ilya.liverpool.more" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <span class="left">Илья Терентьев</span>
+    <span class="right">2026</span>
+  </footer>
+
+  <!-- ============ MODAL ============ -->
+  <div class="modal" id="modal">
+    <div class="modal-inner">
+      <button class="modal-close" id="modal-close" aria-label="Закрыть">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script>
+    // ============ ДАННЫЕ (редактируй здесь) ============
+
+    // AI-фото: 6 карточек-слайдеров, каждая хранит массив изображений
+    const aiPhotos = [
+      {
+        title: 'КОКТЕЙЛИ',
+        images: [
+          'photos/cokt_main.png',
+          'photos/cokt1.png',
+          'photos/cokt2.png'
+        ]
+      },
+      {
+        title: 'МЕРЧ',
+        images: [
+          'photos/prod_main.png',
+          'photos/prod1.png',
+          'photos/prod2.png',
+          'photos/prod3.jpeg',
+          'photos/prod4.jpeg',
+          'photos/prod5.png'
+        ]
+      },
+      {
+        title: 'МЕНЮ',
+        images: [
+          'photos/menu_main.png',
+          'photos/menu1.png',
+          'photos/menu2.png',
+          'photos/menu3.png'
+        ]
+      },
+      {
+        title: 'IL — МЕНЮ БАРА',
+        images: [
+          'photos/IL_Main.png',
+          'photos/IL1.png'
+        ]
+      },
+      {
+        title: 'VOLGA VALLEY WHISKY',
+        images: [
+          'photos/VV_main.png',
+          'photos/VV1.png',
+          'photos/VV3.png'
+        ]
+      },
+      {
+        title: 'KUMIHO',
+        images: [
+          'photos/soju_main.png',
+          'photos/soju2.png',
+          'photos/soju3.png'
+        ]
+      }
+    ];
+
+    // AI-видео (YouTube ID + опциональное описание)
+    const aiVideos = [
+      {
+        youtubeId: 'kAywV-Vd3fs',
+        title: 'ALTAI & X5 GROUP',
+        description: 'Промо ролик к совместной акции водки Altai и магазинов «Пятерочка». Мной была проделана вся работа от идеи и сценария до цветокоррекции и саунд-дизайна. Весь ролик сгенерирован в Kling 3, Veo 3.1, Nana Banana Pro и Suno. Срок исполнения — 5 дней.'
+      },
+      {
+        youtubeId: '3Y50s_TEq1E',
+        title: 'ПРОМО TUNDRA ВОДКА',
+        description: 'Промо новой бутылки Tundra водка. Работа сделана для презентации в сетевых магазинах и на имиджевых мероприятиях. Мной была проделана вся работа от идеи и сценария до цветокоррекции и саунд-дизайна. Весь ролик сгенерирован в Kling 3, Veo 3.1, Nana Banana Pro и Suno. Срок исполнения — 2 дня.'
+      },
+      {
+        youtubeId: 'MZCwYxR3KSQ',
+        title: 'TUNDRA ACTIVATION',
+        description: 'Промо новой акции Tundra водка. Работа сделана для презентации в телеграм-каналах и магазинах розничной продажи. Идея, шрифты и варианты анимации титров прописаны в ТЗ от заказчика. Мной составлена раскадровка, сценарий, монтаж, цветокоррекция и саунд-дизайн. Весь ролик сгенерирован в Kling 3, Nana Banana Pro и Suno. Срок исполнения — 2 дня.'
+      },
+      {
+        youtubeId: 'tVssH8M6fpk',
+        title: 'VOLGA VALLEY WHISKY',
+        description: 'Промо ролик нового российского бренда виски Volga Valley. Работа сделана для презентации в сетевых магазинах и на имиджевых мероприятиях. Заказчик передал мудборд и брендплатформу в качестве ТЗ. Мной была проделана вся остальная работа от идеи и сценария до цветокоррекции и саунд-дизайна. Весь ролик сгенерирован в Kling 2.1, Nana Banana Pro и Suno. Срок исполнения — 4 дня.'
+      },
+      {
+        youtubeId: 'SmhBEXKhkRY',
+        title: 'ZERO NY SOJU PACK',
+        description: 'Промо ролик новогоднего пака соджу в баре Zero (Казань). Формат рилс. Мной была проделана вся работа от идеи и сценария до цветокоррекции и саунд-дизайна. Весь ролик сгенерирован в Kling 2.5 Turbo, Kling O1, Nana Banana Pro и Suno. Срок исполнения — 1 день.'
+      },
+      {
+        youtubeId: '2FfKVZqZWlU',
+        title: 'JUST SLOP',
+        description: 'Just Slop. Kling 2.5 Turbo.'
+      }
+    ];
+
+    // Видео (YouTube ID + опциональное описание)
+    const filmVideos = [
+      {
+        youtubeId: 'RDsaILvdgsQ',
+        title: 'ROYAL RAVEN SAMURAI PROMO',
+        description: 'Промо ролик нового джина Royal Raven Samurai. Мной создана идея, сценарий, найдены костюмы и модель, проведена съёмка, произведён монтаж и саунд-дизайн.'
+      },
+      {
+        youtubeId: 'CpAJ09_9NLw',
+        title: 'ШАНХАЙ',
+        description: 'Тревел-рилс из Шанхая. Мной была проведена съёмка, монтаж, цветокоррекция, эффекты и саунд-дизайн.'
+      },
+      {
+        youtubeId: 'Iy2YpwsizcU',
+        title: 'BEYOND OF COMFORT',
+        description: 'Тревел-рилс о горе Чегет. Мной проведена съёмка, монтаж, цветокоррекция, саунд-дизайн, эффекты.'
+      },
+      {
+        youtubeId: 'VASQpsFcFOQ',
+        title: 'UMAI PROMO',
+        description: 'Промо-ролик ресторана Умай. Мной был произведён финальный монтаж и саунд-дизайн.'
+      },
+      {
+        youtubeId: '1XNWVL9LC0w',
+        title: 'DOROGA',
+        description: 'Тревел-ролик о дорогах Кыргызстана. Мне были предоставлены разрозненные кадры из поездки. Задача — собрать целостную историю. Мной были сделаны монтаж, цветокоррекция и саунд-дизайн.'
+      },
+      {
+        youtubeId: 'JMoyQIVdswc',
+        title: 'ROYAL RAVEN PROMO 3 IN 1',
+        description: 'Промо ролик для презентации на событиях для компании Royal Raven. Был собран из трёх отдельных роликов. Мной был произведён финальный монтаж.'
+      }
+    ];
+
+    // ============ SVG иконка Play ============
+    const playSVG = `<svg class="play-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" stroke="#FFFFFF" stroke-width="2"/>
+      <path d="M26 22L44 32L26 42V22Z" fill="#FFFFFF"/>
+    </svg>`;
+
+    // ============ РЕНДЕР СЕТОК ============
+
+    // Карточка фото — слайдер с crossfade через два слоя <img>
+    function renderPhotoCard(item) {
+      const card = document.createElement('div');
+      card.className = 'card card-photo';
+
+      const total = item.images.length;
+      const state = { idx: 0, animating: false };
+
+      card.innerHTML = `
+        <div class="slider-frame">
+          <img class="slider-img layer-a" src="${item.images[0]}" alt="${item.title}" loading="lazy" />
+          <img class="slider-img layer-b" alt="" />
+          <button class="slider-arrow prev" aria-label="Назад">‹</button>
+          <button class="slider-arrow next" aria-label="Вперёд">›</button>
+        </div>
+        <div class="slider-title">${item.title}</div>
+      `;
+
+      const imgA = card.querySelector('.layer-a');
+      const imgB = card.querySelector('.layer-b');
+      const prevBtn = card.querySelector('.slider-arrow.prev');
+      const nextBtn = card.querySelector('.slider-arrow.next');
+
+      // Начальное состояние: A видимый, B спрятан
+      imgA.style.opacity = '1';
+      imgB.style.opacity = '0';
+      let front = imgA; // сейчас на экране
+      let back = imgB;  // буфер для следующего кадра
+
+      function crossfade() {
+        // Форсируем рефлоу, чтобы transition действительно запустился
+        void back.offsetWidth;
+        back.style.opacity = '1';
+        front.style.opacity = '0';
+        setTimeout(() => {
+          // меняем роли слоёв
+          const tmp = front;
+          front = back;
+          back = tmp;
+          state.animating = false;
+        }, 420);
+      }
+
+      function show(newIdx) {
+        if (state.animating) return;
+        state.animating = true;
+        state.idx = (newIdx + total) % total;
+
+        back.src = item.images[state.idx];
+        if (back.complete && back.naturalWidth > 0) {
+          crossfade();
+        } else {
+          back.onload = crossfade;
+          back.onerror = () => { state.animating = false; };
+        }
+      }
+
+      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); show(state.idx - 1); });
+      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); show(state.idx + 1); });
+
+      return card;
+    }
+
+    // Карточка видео — превью, название и опциональное выпадающее описание
+    function renderVideoCard(item) {
+      const card = document.createElement('div');
+      card.className = 'card card-video video-card';
+      const thumb = `https://img.youtube.com/vi/${item.youtubeId}/maxresdefault.jpg`;
+
+      const toggleHTML = item.description
+        ? `<div class="video-toggle">
+             <button class="toggle-btn" type="button">Что было сделано</button>
+             <div class="toggle-body">${item.description}</div>
+           </div>`
+        : '';
+
+      card.innerHTML = `
+        <div class="video-thumb">
+          <img src="${thumb}" alt="${item.title}" loading="lazy"
+               onerror="this.src='https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg'" />
+          <div class="overlay">${playSVG}</div>
+        </div>
+        <p class="video-title">${item.title}</p>
+        ${toggleHTML}
+      `;
+
+      // Открытие модалки — только по клику на превью
+      const thumbEl = card.querySelector('.video-thumb');
+      thumbEl.addEventListener('click', () => openVideoModal(item.youtubeId, item.title));
+
+      // Переключатель описания
+      const toggleBtn = card.querySelector('.toggle-btn');
+      const toggleBody = card.querySelector('.toggle-body');
+      if (toggleBtn && toggleBody) {
+        toggleBtn.addEventListener('click', () => {
+          toggleBody.classList.toggle('open');
+        });
+      }
+
+      return card;
+    }
+
+    // Заполняем сетки
+    function fillGrid(elId, items, renderer) {
+      const grid = document.getElementById(elId);
+      items.forEach(item => grid.appendChild(renderer(item)));
+    }
+
+    fillGrid('grid-ai-photo', aiPhotos, renderPhotoCard);
+    fillGrid('grid-ai-video', aiVideos, renderVideoCard);
+    fillGrid('grid-video', filmVideos, renderVideoCard);
+
+    // ============ МОДАЛЬНОЕ ОКНО ============
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modal-content');
+    const modalClose = document.getElementById('modal-close');
+
+    function openPhotoModal(src, alt) {
+      modalContent.innerHTML = `<img src="${src}" alt="${alt}" />`;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openVideoModal(youtubeId, title) {
+      modalContent.innerHTML = `<iframe
+        src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0"
+        title="${title}"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>`;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modalContent.innerHTML = ''; // останавливает iframe
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // ============ FADE-IN ЧЕРЕЗ INTERSECTION OBSERVER ============
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const cards = entry.target.parentElement.querySelectorAll('.card:not(.visible)');
+          cards.forEach((c, idx) => {
+            if (c === entry.target) {
+              setTimeout(() => c.classList.add('visible'), idx * 80);
+            }
+          });
+          // Простой stagger: ставим задержку относительно позиции внутри сетки
+          const grid = entry.target.parentElement;
+          const all = Array.from(grid.children);
+          const index = all.indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('visible'), index * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+    // ============ БУРГЕР-МЕНЮ ============
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('nav');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        burger.classList.remove('open');
+        nav.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
